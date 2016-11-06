@@ -2,18 +2,20 @@
 % Please edit documentation in R/get_reviews.R
 \name{get_reviews}
 \alias{get_reviews}
-\title{Gets reviews from Amazon.com}
+\title{Gets reviews from Amazon}
 \usage{
-get_reviews(productCode)
+get_reviews(productCode, domain = "com")
 }
 \arguments{
 \item{productCode:}{The Amazon product code.}
+
+\item{domain:}{Domain to use if searching other sites than .com. See \code{\link{domains}} for available domains.}
 }
 \value{
 The function returns a data frame with reviews.
 }
 \description{
-The function gets reviews from Amazon.com for a particular product. It fetches the rating, the date of the review, the format if it is book, if the purchase was verified or not, the headline and the text of the review.
+The function gets reviews from Amazon for a particular product. It fetches the rating, the date of the review, the format if it is book, if the purchase was verified or not, the headline and the text of the review.
 }
 \examples{
 # Get reviews for 'The Art of R Programming: A Tour of Statistical Software Design'

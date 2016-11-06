@@ -27,20 +27,44 @@ devtools::install_github("56north/Rmazon")
 
 ### Example - product information
 
-This is a basic example which shows you how ro get product information:
+This is a basic example which shows you how to get product information:
 
-```R
+```{r}
 # Get product information for 'The Art of R Programming: A Tour of Statistical Software Design'
-
 product_info <- Rmazon::get_product_info("1593273843")
+
+# Have a look at the data
+product_info
 ```
+
+Lets get the same information, but from the **german** Amazon
+```{r}
+# Find the appropriate domain
+Rmazon::domains$Germany
+
+# Then use domain to get german data
+product_info_de <- Rmazon::get_product_info("1593273843", domain = "de")
+```
+
 
 ### Example - product reviews
 
-This is a basic example which shows you how gto et reviews:
+This is a basic example which shows you how to get reviews:
 
-```R
+```{r}
 # Get reviews for 'The Art of R Programming: A Tour of Statistical Software Design'
-
 reviews <- Rmazon::get_reviews("1593273843")
+
+# Have a look at the data
+reviews
 ```
+
+Lets get the same information, but from the **french** Amazon
+```{r}
+# Find the appropriate domain
+Rmazon::domains$France
+
+# Then use domain to get german data
+reviews_fr <- Rmazon::get_reviews("1593273843", domain = "fr")
+```
+

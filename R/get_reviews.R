@@ -1,12 +1,15 @@
-#' Gets reviews from Amazon.com
+#' Gets reviews from Amazon
 #'
 #' @name get_reviews
 #'
 #' @param
 #' productCode: The Amazon product code.
 #'
+#' @param
+#' domain: Domain to use if searching other sites than .com. See \code{\link{domains}} for available domains.
+#'
 #' @description
-#' The function gets reviews from Amazon.com for a particular product. It fetches the rating, the date of the review, the format if it is book, if the purchase was verified or not, the headline and the text of the review.
+#' The function gets reviews from Amazon for a particular product. It fetches the rating, the date of the review, the format if it is book, if the purchase was verified or not, the headline and the text of the review.
 #'
 #' @return
 #' The function returns a data frame with reviews.
@@ -18,9 +21,9 @@
 #'
 #' @export
 
-get_reviews <- function(productCode){
+get_reviews <- function(productCode, domain = "com"){
 
-  url <- paste0("http://www.amazon.com/product-reviews/", productCode)
+  url <- paste0("http://www.amazon.", domain,"/product-reviews/", productCode)
 
   html_data <- xml2::read_html(url)
 

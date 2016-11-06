@@ -1,12 +1,15 @@
-#' Gets product info from Amazon.com
+#' Gets product info from Amazon
 #'
 #' @name get_product_info
 #'
 #' @param
 #' productCode: The Amazon product code.
 #'
+#' @param
+#' domain: Domain to use if searching other sites than .com. See \code{\link{domains}} for available domains.
+#'
 #' @description
-#' The function gets product info from Amazon.com for a particular product. It fetches the product title, the price, the average rating, the histogram of the reviews, reviews count and product details.
+#' The function gets product info from Amazon for a particular product. It fetches the product title, the price, the average rating, the histogram of the reviews, reviews count and product details.
 #'
 #' @return
 #' The function returns a list frame with product information.
@@ -18,9 +21,9 @@
 #'
 #' @export
 
-get_product_info <- function(productCode){
+get_product_info <- function(productCode, domain = "com"){
 
-  url <- paste0("https://www.amazon.com/dp/", productCode)
+  url <- paste0("https://www.amazon.", domain,"/dp/", productCode)
 
   html_data <- xml2::read_html(url)
 
@@ -49,7 +52,6 @@ get_product_info <- function(productCode){
 
   details <- rvest::html_nodes(html_data, ".content li")
   details <- rvest::html_text(details, trim = T)
-  details <- details[!stringr::str_detect(details, "Average Customer Review|Amazon Best Sellers Rank")]
 
   details <- lapply(details, function(x){
     x <- stringr::str_replace_all(x, "\\s+", " ")
@@ -62,7 +64,6 @@ get_product_info <- function(productCode){
                 histogramTable = histogramTable,
                 reviewsCount = summaryStars,
                 productDetails = details)
-
   return(info)
 
 }

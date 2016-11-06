@@ -1,15 +1,16 @@
 reviews_from_page <- function(scrapeurl){
+
   html_review_data <- xml2::read_html(scrapeurl)
 
   reviewRating <- rvest::html_nodes(html_review_data, "#cm_cr-review_list .review-rating")
   reviewRating <- rvest::html_text(reviewRating)
   reviewRating <- stringr::str_sub(reviewRating, 1,3)
+  reviewRating <- stringr::str_replace_all(reviewRating, ",", ".")
   reviewRating <- as.numeric(reviewRating)
 
   reviewDate <- rvest::html_nodes(html_review_data, "#cm_cr-review_list .review-date")
   reviewDate <- rvest::html_text(reviewDate)
   reviewDate <- stringr::str_replace_all(reviewDate, "on ", "")
-  reviewDate <- lubridate::parse_date_time(reviewDate, orders = "B d Y")
 
   reviewFormat <- rvest::html_nodes(html_review_data, ".review")
 
