@@ -1,15 +1,14 @@
 Package: Rmazon
 Type: Package
-Title: Fetches product information and reviews from Amazon.com
-Version: 0.1
-Date: 2016-11-03
+Title: Fetches product information and reviews from Amazon
+Version: 0.2
+Date: 2016-11-06
 Author: Mikkel Freltoft Krogsholm
 Maintainer: <mikkel@56n.dk>
-Description: This package collects product information and reviews from Amazon.com
+Description: This package collects product information and reviews from Amazon.com and other Amazon domains
 License: MIT
 LazyData: TRUE
 Imports:
     rvest,
-    stringr,
-    lubridate
+    stringr
 RoxygenNote: 5.0.1
