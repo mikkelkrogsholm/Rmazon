@@ -2,6 +2,7 @@
 #'
 #' @name get_product_info
 #'
+#'
 #' @param
 #' productCode: The Amazon product code.
 #'
