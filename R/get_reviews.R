@@ -29,7 +29,7 @@ get_reviews <- function(productCode, domain = "com"){
 
   totalReviewCount <- rvest::html_nodes(html_data, ".totalReviewCount")
   totalReviewCount <- rvest::html_text(totalReviewCount)
-  totalReviewCount <- stringr::str_extract_all(totalReviewCount, "\\d+")
+  totalReviewCount <- paste(unlist((stringr::str_extract_all(totalReviewCount, "\\d+"))), collapse = "")
   totalReviewCount <- as.numeric(totalReviewCount)
 
   bookTitle <- rvest::html_nodes(html_data, ".a-col-right h1")
